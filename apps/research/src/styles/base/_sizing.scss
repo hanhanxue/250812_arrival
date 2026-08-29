@@ -16,15 +16,15 @@
 
 // Border radius
 :root {
-  --radius-sm: 3px;
+  --radius-sm: 4px;
   --radius-md: 6px;
-  --radius-lg: 8px;
+  --radius-lg: 10px;
   --radius-full: 9999px;
 }
 
 // Semantic aliases
 :root {
   --gutter: var(--spacing-3);
-  --image-radius: var(--radius-md);
+  --image-radius: var(--radius-lg);
   --header-height: 80px; // rendered height of the fixed header bar — anchor scroll offset depends on it
 }

@@ -1,6 +1,11 @@
 @use "@/styles/base/typography" as *;
 
+
+
+
+
 .gridItem {
+  // background-color: red;
   // SCROOL MARGIN TOP
   // scroll-margin-top: var(--header-height, 80px);
   scroll-margin-top: var(--header-height);
@@ -10,7 +15,6 @@
   //   width: 320px;
   margin-bottom: var(--spacing-5);
 
-  // background-color: var(--c-surface-0);
   //   border-radius: var(--rounded-lg);
   // overflow: hidden;
   // padding: 8px;
@@ -26,6 +30,14 @@
   // {
   //   opacity: 1;
   // }
+    &:hover {
+    // .carouselControls{
+    //   opacity: 1;
+    // }
+    .overlays {
+      opacity: 1;
+    }
+  }
 }
 
 .mediaContainer {
@@ -37,6 +49,7 @@
   position: relative;
 
   border-radius: var(--image-radius);
+  // border-radius: 10px;
   overflow: hidden;
 
   background-color: var(--c-surface-container-low);
@@ -59,22 +72,15 @@
   // background-color: red;
 }
 
-  &:hover {
-    // .carouselControls{
-    //   opacity: 1;
-    // }
-    .overlays {
-      opacity: 1;
-    }
-  }
+
 
   .overlays {
+    opacity: 0;
     // opacity: 1;//////////////// DEBUG
 
 
     pointer-events: none;
 
-    opacity: 0;
 
     position: absolute;
     inset: 0;

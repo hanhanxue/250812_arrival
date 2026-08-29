@@ -90,14 +90,14 @@ mux-player {
 }
 
 
-/* Target the specific named group we just created */
-::view-transition-group(toggle),
-::view-transition-old(toggle),
-::view-transition-new(toggle) {
-  /* Disable the default crossfade animation */
-  // animation: none;
-  // display: none;
-}
+// /* Target the specific named group we just created */
+// ::view-transition-group(toggle),
+// ::view-transition-old(toggle),
+// ::view-transition-new(toggle) {
+//   /* Disable the default crossfade animation */
+//   // animation: none;
+//   // display: none;
+// }
 
 
 
