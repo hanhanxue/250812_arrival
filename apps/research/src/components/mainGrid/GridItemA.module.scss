@@ -128,10 +128,10 @@
 
 .projectControls {
   // background-color: red;
-
+  
   position: absolute;
   inset: 0;
-
+  
   padding: var(--spacing-1-5);
 
   display: flex;
@@ -266,6 +266,8 @@
   }
 
   .titleContainer {
+    padding: 0 var(--spacing-1-5);
+
     @include caption1-strong;
     display: flex;
     justify-content: space-between;
