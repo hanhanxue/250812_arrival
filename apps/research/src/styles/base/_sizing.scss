@@ -26,5 +26,6 @@
 :root {
   --gutter: var(--spacing-3);
   --image-radius: var(--radius-lg);
+  --button-radius: 5px;
   --header-height: 80px; // rendered height of the fixed header bar — anchor scroll offset depends on it
 }

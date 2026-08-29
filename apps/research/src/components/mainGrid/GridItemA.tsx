@@ -109,9 +109,12 @@ useEffect(() => {
             <div className={styles.projectControls}>
               <div className={styles.projectControlsTop}>
                 {/* <button>Share</button> */}
+
+
               </div>
               <div className={styles.projectControlsBottom}>
-                  <XButton>Visit Site</XButton>
+
+                                  <XButton>Visit Site</XButton>
                 <div className={styles.projectControlsGroup}>
                   <XButton style="secondary">Notes</XButton>
               <XButton>Project Files (3.12 MB)</XButton>
