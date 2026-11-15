@@ -1,13 +1,9 @@
 .menuButton {
-    //   background-color: red;
-    
   width: 28px;
   height: 28px;
 
   cursor: pointer;
   user-select: none;
-  
-
 
   &.open {
     .bar {
@@ -29,10 +25,10 @@
 
     width: 14px;
     height: 2px;
-    background-color: var(--c-on-surface);
+    background-color: var(--color-on-background);
 
     transition-property: transform;
-    transition-duration: 120ms;
+    transition-duration: var(--motion-duration-fast);
     transition-timing-function: ease-out;
 
     &:nth-child(1) {

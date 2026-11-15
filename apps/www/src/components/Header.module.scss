@@ -1,74 +1,66 @@
-@use "@/styles/base/variables" as *;
-@use "@/styles/base/typography" as *;
-
-@use "@/styles/abstracts/animation" as *;
-@use "@/styles/abstracts/respond" as *;
-
+@use "@/styles/tools/breakpoint" as *;
+@use "@/styles/tools/typography" as *;
 
 .section {
-  // background-color: transparent;
-  // color: var(--c-on-surface);
-
-
   position: fixed;
-
-    top: 0;
+  top: 0;
   width: 100%;
 
-  z-index: 99;
+  z-index: var(--z-header);
+
+  //   background-color: color-mix(in srgb, var(--color-background) 70%, transparent);
+  // -webkit-backdrop-filter: blur(16px); // Safari
+  // backdrop-filter: blur(16px);
 }
 
 .container {
   .gridItem {
-    @include subtitle-1;
-    padding: $spacing-2 0;
+    @include title3;
+    padding: var(--space-padding-sm) 0;
 
     grid-row: 1;
     display: flex;
   }
-  
-      .groupA {
-      grid-column: 1 / 13;
-  
-      align-items: center;
-      justify-content: space-between;
 
-      .menuButtonWrapper {
-        display: none;
+  .groupA {
+    grid-column: 1 / 13;
 
-        @include respond(lg)  {
-          display: block;
-        }
+    align-items: center;
+    justify-content: space-between;
+
+    .menuButtonWrapper {
+      display: none;
+
+      @include respond(below_md) {
+        display: block;
       }
-
     }
+  }
 
-    .groupB {
-      grid-column: 9 / 13;
+  .groupB {
+    grid-column: 9 / 13;
 
-      align-items: center;
-      
-      gap: $spacing-4;
+    align-items: center;
+    gap: var(--space-inline-md);
+    justify-content: right;
 
-      justify-content: right;
-
-      @include respond(lg) {
-display: none;
-      }
-
+    @include respond(below_md) {
+      display: none;
     }
+  }
 }
 
 .invert {
   filter: invert(1);
+  mix-blend-mode: difference;
   background-color: transparent !important;
 }
 
 .link {
-  color: var(--c-on-surface-subtle);
+  color: var(--color-on-background-variant);
+  transition: color var(--motion-duration-slow);
 
   &:hover {
-    color: var(--c-on-surface);
+    color: var(--color-on-background);
   }
-  transition: color $duration-standard;
 }

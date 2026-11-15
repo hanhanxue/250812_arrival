@@ -2,6 +2,8 @@ import Image from "next/image"
 import styles from "./page.module.scss"
 import MontrealInfo from "@/components/MontrealInfo"
 import MuxVideo from "@/components/MuxVideo"
+import S_Subscribe from "@/components/S_Subscribe"
+
 
 export default function Home() {
   return (
@@ -9,10 +11,24 @@ export default function Home() {
       <section className={`${styles.section} usection`}>
         <div className={`${styles.fullContainer}`}>
 
-          
           <div className={`${styles.assetFrame}`}>
-            <MuxVideo playbackId="VT9w4VCOxq02jNl1QT8Fd7eZUcAUjtKE48twHMoYfnS00" />
+            <div style={{ position: "relative", aspectRatio: 1.0 }}>
+              <Image
+
+                src="/261113_d5.jpg"  
+                alt="Arrival Computer - d5"
+
+                priority
+                fill
+                />
+            </div>
+
+    
+
           </div>
+          {/* <div className={`${styles.assetFrame}`}>
+            <MuxVideo playbackId="VT9w4VCOxq02jNl1QT8Fd7eZUcAUjtKE48twHMoYfnS00" />
+          </div> */}
 
           {/* <div className={`${styles.assetFrame}`} >
             <div style={{ position: "relative", aspectRatio: 2 }}>
@@ -30,7 +46,8 @@ export default function Home() {
         </div>
       </section>
 
-
+      <S_Subscribe />
+     
     </main>
   )
 }

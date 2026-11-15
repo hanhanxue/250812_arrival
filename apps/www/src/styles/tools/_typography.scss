@@ -1,0 +1,52 @@
+// Typography mixins — one per type role. Sass-only: emits no CSS, so it's
+// safe to @use from any component:
+//
+//   @use "@/styles/tools/typography" as *;
+//   .intro { @include title2; }
+//
+// Mixins only bundle tokens: every value, including how it changes at each
+// breakpoint, lives in the Font section of base/_tokens (--font-{role}-…).
+// To change a role, edit its tokens there; to add a role, add its tokens
+// there and a mixin here.
+// Text with no role falls back to the browser's default serif on purpose,
+// so unstyled type is easy to spot.
+
+@mixin title1 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-title1-weight);
+  font-size: var(--font-title1-size);
+  line-height: var(--font-title1-line-height);
+  letter-spacing: var(--font-title1-letter-spacing);
+}
+
+@mixin title2 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-title2-weight);
+  font-size: var(--font-title2-size);
+  line-height: var(--font-title2-line-height);
+  letter-spacing: var(--font-title2-letter-spacing);
+}
+
+@mixin title3 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-title3-weight);
+  font-size: var(--font-title3-size);
+  line-height: var(--font-title3-line-height);
+  letter-spacing: var(--font-title3-letter-spacing);
+}
+
+@mixin body1 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-body1-weight);
+  font-size: var(--font-body1-size);
+  line-height: var(--font-body1-line-height);
+  letter-spacing: var(--font-body1-letter-spacing);
+}
+
+@mixin caption1 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-caption1-weight);
+  font-size: var(--font-caption1-size);
+  line-height: var(--font-caption1-line-height);
+  letter-spacing: var(--font-caption1-letter-spacing);
+}

@@ -12,11 +12,11 @@ const ICO_Arrival = (props: SVGProps<SVGSVGElement>) => {
     >
       <path
         d="M10 8.74228e-07H30V5H10V8.74228e-07Z"
-        fill="var(--c-on-surface)"
+        fill="var(--color-on-background)"
       />
-      <path d="M10 15H30V20H10V15Z" fill="var(--c-on-surface)" />
-      <path d="M10 5L0 1.74846e-05V20L10 15V5Z" fill="var(--c-on-surface)" />
-      <path d="M30 15L40 20V0L30 5V15Z" fill="var(--c-on-surface)" />
+      <path d="M10 15H30V20H10V15Z" fill="var(--color-on-background)" />
+      <path d="M10 5L0 1.74846e-05V20L10 15V5Z" fill="var(--color-on-background)" />
+      <path d="M30 15L40 20V0L30 5V15Z" fill="var(--color-on-background)" />
     </svg>
   )
 }

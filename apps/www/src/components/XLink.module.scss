@@ -1,28 +1,21 @@
-@use "@/styles/abstracts/animation" as *;
-
 .primary {
-  color: var(--c-on-surface-subtle);
+  color: var(--color-on-background-variant);
+  transition: color var(--motion-duration-slow);
 
   &:hover {
-    color: var(--c-on-surface);
+    color: var(--color-on-background);
   }
-
-  transition: color $duration-standard;
-
-  // span {
-  //     display: flex;
-
-  // }
 }
 
 .secondary {
-  color: var(--c-on-surface);
+  color: var(--color-on-background);
 }
 
 .isActive {
-  color: var(--c-on-surface);
+  color: var(--color-on-background);
 }
 
+// unknown `style` prop: deliberately loud so it gets noticed
 .debug {
-  color: var(--c-debug);
+  color: red;
 }

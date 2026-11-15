@@ -9,7 +9,7 @@ const ICOArrivalWorks = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill="var(--c-on-surface-primary)"
+      fill="var(--color-on-background)"
       d="M14 0h28v7H14zM14 21h28v7H14zM14 7 0 0v28l14-7V7ZM42 21l14 7V0L42 7v14Z"
     />
   </svg>

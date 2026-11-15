@@ -1,9 +1,33 @@
-@use "@/styles/vendors/reset";
+// ─────────────────────────────────────────────────────────────────────────────
+// Design system — entry point
+//
+// Two folders, one rule each:
+//
+//   tools/  Sass-only. Mixins, functions, breakpoints. Emits NO CSS, so any
+//           stylesheet may `@use` it freely (components do, for respond() and
+//           the type mixins).
+//   base/   Emits CSS: tokens on :root, element defaults, global classes.
+//           Loaded ONCE, here. Never `@use` a base/ file from a component —
+//           each .module.scss compiles separately, so its CSS would be
+//           duplicated into every module that did.
+//
+// Components therefore get values at runtime through `var(--…)` tokens, and
+// get Sass tools through `@use "@/styles/tools/…"`.
+//
+// Token categories: breakpoint · color · space · size · radius · layout ·
+// z · motion · typography. Tokens are semantic only (named by role, no
+// raw-value scale underneath); raw values belong in base/, never in components.
+//
+// Breakpoints are the exception to "tokens are CSS variables": media queries
+// can't read var(), so they live in tools/breakpoints.ts — see that file.
+// ─────────────────────────────────────────────────────────────────────────────
 
-@use "@/styles/base/typography";
-@use "@/styles/base/colors";
-@use "@/styles/base/sizing";
+// Load order is cascade order: later files win ties.
+@use "@/styles/base/reset";      // browser normalization
 
-@use "@/styles/base/utilities";
+@use "@/styles/base/color";      // color tokens + light/dark themes
+@use "@/styles/base/tokens";     // all other tokens
 
-@use "@/styles/base/globals";
+@use "@/styles/base/utilities";  // global helper + type classes
+
+@use "@/styles/base/globals";    // element defaults (html, body, a…)

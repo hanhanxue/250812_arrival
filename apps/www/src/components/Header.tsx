@@ -41,7 +41,7 @@ export default function Header({ invert }: HeaderProps) {
             rel="noopener"
             style="secondary"
           >
-            Arrival
+            Arrival Computer
           </XLink>
           <div className={`${styles.menuButtonWrapper}`}> 
             <MenuButton isOpen={isMenuOpen} onClick={toggleMenu} />

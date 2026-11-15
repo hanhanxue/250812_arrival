@@ -1,0 +1,7 @@
+// Sass helper functions. Sass-only: emits no CSS, safe to @use anywhere.
+
+// px → rem, assuming the 16px root font size set in base/_globals.
+// rem(16) → 1rem, rem(24) → 1.5rem   (16 × .1 × .625rem = 1rem)
+@function rem($size: 0px) {
+  @return calc(#{$size * 0.1 * 0.625rem});
+}

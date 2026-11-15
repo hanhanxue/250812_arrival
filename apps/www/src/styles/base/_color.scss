@@ -1,0 +1,37 @@
+// Color tokens. Emits CSS; loaded once via main.scss.
+//
+// Naming: Material-style pairs. A fill token names a surface; its `on-` token
+// is the content color placed on it. `-variant` is a quieter version of the
+// same role.
+//   --color-background            page background
+//   --color-on-background         primary text and icons on it
+//   --color-on-background-variant secondary text (inactive links)
+//   --color-surface-container     neutral fills, e.g. placeholders behind media
+//   --color-outline               emphasized borders (focused inputs)
+//   --color-outline-variant       subtle borders and dividers
+// Only define what's used; add a pair when something needs it.
+//
+// Themes: color is the only category with modes. Every token is defined once
+// per theme; components only use var(--…) and never branch on the theme.
+// app/layout.tsx pins data-theme="light" on <body>; a subtree can switch theme
+// by setting its own data-theme (the Footer uses "dark").
+
+[data-theme="light"] {
+  --color-background: #ffffff;
+  --color-on-background: #14120b;
+  --color-on-background-variant: #8f8f8f;
+  --color-surface-container: #f6f6f6;
+
+
+  --color-outline: rgba(40, 40, 40, 1.0);
+  --color-outline-variant: rgba(40, 40, 40, .16);
+}
+
+[data-theme="dark"] {
+  --color-background: #000;
+  --color-on-background: #edecec;
+  --color-on-background-variant: #8f8f8f;
+  --color-surface-container: #2b2923;
+  --color-outline: #8f8f8f;
+  --color-outline-variant: #3a3833;
+}

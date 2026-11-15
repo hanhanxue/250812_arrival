@@ -1,13 +1,14 @@
 import type { NextConfig } from "next"
 import { withPlausibleProxy } from "next-plausible"
-import path from "path"
+import { breakpointsSass } from "./src/styles/tools/breakpoints"
 
 const nextConfig: NextConfig = withPlausibleProxy({
   src: "https://plausible.gitpushoriginmain.com/js/script.js",
 })({
-  // sassOptions: {
-  //   includePaths: [path.join(__dirname, "src")],
-  // },
+  // breakpoints.ts is the source of truth; prepend its Sass map to every stylesheet
+  sassOptions: {
+    additionalData: breakpointsSass,
+  },
   images: {
     remotePatterns: [
       {

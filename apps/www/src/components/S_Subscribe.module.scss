@@ -1,0 +1,78 @@
+
+@use "@/styles/tools/breakpoint" as *;
+@use "@/styles/tools/typography" as *;
+
+
+.section {
+    background-color: #ff3300;
+
+
+    .container {
+
+    }
+}
+
+
+.newsletterSignupForm {
+    justify-self: center;
+    width: 100%;
+
+
+        grid-column: 1 / 13;
+    margin: var(--space-padding-subscribe) 0;
+
+    display: flex;
+justify-content: space-between;
+
+
+@include title1;
+
+// max-width: var(--layout-max-width);
+
+
+border-bottom: 1px solid var(--color-outline-variant);
+padding: var(--space-padding-sm) 0;
+
+// &:focus-visible { border-bottom: 1px solid var(--color-outline); }
+&:focus-within { border-bottom-color: var(--color-outline); }
+
+}
+
+
+.emailInput {
+    // strip all native input styling
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+
+    // inherit type/color from the form instead of UA defaults
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+
+    // let it flex instead of the default ~20ch intrinsic width
+    min-width: 0;
+    flex: 1;
+
+    &::placeholder {
+        color: inherit;
+        opacity: 0.5;
+    }
+
+    // hide placeholder on focus so only the caret shows
+    // &:focus::placeholder {
+    //     opacity: 0;
+    // }
+
+    // Chrome autofill paints a yellow/blue background; mask it
+    &:-webkit-autofill {
+        -webkit-text-fill-color: currentColor;
+        transition: background-color 9999s ease-out 0s;
+    }
+}

@@ -1,0 +1,28 @@
+// Breakpoint mixin. Sass-only: emits no CSS, safe to @use anywhere.
+//
+//   @use "@/styles/tools/breakpoint" as *;
+//   .card { @include respond(below_md) { … } }   // ≤ 1024px
+//
+// Values are NOT defined here — they live in tools/breakpoints.ts (shared with
+// JS). next.config.ts configures this module with them at the top of every
+// entry stylesheet (`@use … with ($breakpoints: …)`), which is why the map
+// below is an empty !default. An unknown name is a compile error.
+@use "sass:map";
+
+$breakpoints: () !default;
+
+
+
+@mixin respond($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+
+
+        $breakpoint-value: map.get($breakpoints, $breakpoint); // Get the breakpoint value
+
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+    } @else {
+      @error "No match found for breakpoint: #{$breakpoint}.";
+    }
+  }

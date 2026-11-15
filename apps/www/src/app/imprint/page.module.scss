@@ -1,0 +1,16 @@
+// Type specimen: one block per type role, each through its mixin — the same
+// way components apply type.
+@use "@/styles/tools/typography" as *;
+
+.specimen {
+  margin-top: var(--space-stack-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-stack-xs);
+}
+
+.title1 { @include title1; }
+.title2 { @include title2; }
+.title3 { @include title3; }
+.body1 { @include body1; }
+.caption1 { @include caption1; }

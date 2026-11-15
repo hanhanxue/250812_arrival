@@ -4,7 +4,7 @@ import ICOArrivalWorks from "./ICOArrivalWorks"
 
 const Footer = () => {
   return (
-    <footer className={`${styles.footer} usection usection-spacer-lg`}
+    <footer className={`${styles.footer} usection`}
     data-theme="dark">
         <div className={`${styles.container} ucontainer umx`}>
 
