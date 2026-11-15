@@ -28,7 +28,7 @@ export default function Header({ invert }: HeaderProps) {
   return (
     <header
       className={`${styles.section} usection ${invert ? ` ${styles.invert}` : ""}`}
-      // data-theme="dark"
+      data-theme={invert ? "dark" : undefined}
     >
       <div className={`${styles.container} ucontainer umx`}>
          
@@ -53,6 +53,16 @@ export default function Header({ invert }: HeaderProps) {
 
 
         <div className={`${styles.gridItem} ${styles.groupB}`}>
+
+                    <XLink
+            href="/"
+            target="_blank"
+            rel="noopener"
+          >
+            OS
+          </XLink>
+
+
 
           <XLink
             href="/"

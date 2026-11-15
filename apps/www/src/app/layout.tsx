@@ -8,6 +8,7 @@ import Script from "next/script"
 import PlausibleProvider from "next-plausible"
 
 import Footer from "@/components/Footer"
+import MediaProvider from "@/providers/MediaProvider"
 
 // Self-hosted and preloaded by Next. Exposed as --font-monument; styles use
 // --font-family-primary (base/_tokens.scss), which points at it.
@@ -46,9 +47,23 @@ export default function RootLayout({
         {/* End of disable-plausible */}
         <PlausibleProvider />
       </head>
+
+
+
+
+
+
+
+
+
+
       <body data-theme="light">
+
+<MediaProvider>
         {children}
-      {/* <Footer /> */}
+      <Footer />
+</MediaProvider>
+
       </body>
 
     </html>

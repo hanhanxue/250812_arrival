@@ -11,6 +11,9 @@
   //   background-color: color-mix(in srgb, var(--color-background) 70%, transparent);
   // -webkit-backdrop-filter: blur(16px); // Safari
   // backdrop-filter: blur(16px);
+
+  // transition-property: background-color, color;
+  // transition-duration: var(--motion-duration-slow);
 }
 
 .container {
@@ -50,10 +53,17 @@
   }
 }
 
+// While a ThemeAtTop wrapper reports the page is at the top.
+:global([data-at-top]) .section {
+  background-color: transparent;
+}
+
+
 .invert {
-  filter: invert(1);
-  mix-blend-mode: difference;
-  background-color: transparent !important;
+  // data-theme: dark;
+  // filter: invert(1);
+  // mix-blend-mode: difference;
+  // background-color: transparent !important;
 }
 
 .link {

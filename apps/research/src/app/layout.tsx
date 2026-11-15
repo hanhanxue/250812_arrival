@@ -67,6 +67,8 @@ export default function RootLayout({
 
         <PlausibleProvider />
       </head>
+
+      
       <body>
         <MediaProvider>
           <Header />
