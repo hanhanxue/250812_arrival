@@ -12,6 +12,20 @@ export default function Home() {
         <div className={`${styles.fullContainer}`}>
 
           <div className={`${styles.assetFrame}`}>
+                        <div className={`${styles.assetCaptionFrame}`}>
+                          <div className={`${styles.assetCaption}`}>
+                            <div className={`${styles.assetCaptionTitle}`}><p>Meadowlark</p>
+                            <span className={`${styles.assetCaptionDescription}`}>Premium D5 pump and reservoir combo</span></div>
+    
+    <div className={`${styles.buttons}`}>
+      {/* <p>Learn More</p> */}
+      <span>Buy</span>
+    </div>
+                          </div>
+          
+            </div>
+
+
             <div style={{ position: "relative", aspectRatio: 1.0 }}>
               <Image
 
@@ -22,6 +36,7 @@ export default function Home() {
                 fill
                 />
             </div>
+
 
     
 

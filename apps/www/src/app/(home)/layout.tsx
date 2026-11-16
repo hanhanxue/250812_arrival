@@ -1,12 +1,12 @@
 import Header from "@/components/Header"
-import ThemeAtTop from "@/components/ThemeAtTop"
+import AtTop from "@/components/AtTop"
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <ThemeAtTop theme="dark">
+      <AtTop>
         <Header />
-      </ThemeAtTop>
+      </AtTop>
       {children}
     </>
   )

@@ -22,6 +22,18 @@ const monument = localFont({
   adjustFontFallback: "Arial",
 })
 
+// Exposed as --font-neue-montreal; styles use --font-family-secondary
+// (base/_tokens.scss). Static cuts: Book (400) and Medium (500).
+const neueMontreal = localFont({
+  src: [
+    { path: "../../public/fonts/PPNeueMontreal-Book.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/PPNeueMontreal-Medium.woff2", weight: "500", style: "normal" },
+  ],
+  display: "swap",
+  variable: "--font-neue-montreal",
+  adjustFontFallback: "Arial",
+})
+
 export const metadata: Metadata = {
   title: SITE_NAME,
   description: SITE_DESCRIPTION,
@@ -33,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={monument.variable}>
+    <html lang="en" className={`${monument.variable} ${neueMontreal.variable}`}>
       <head>
 
         {/* This script sets the plausible_ignore flag for Vercel deployments */}
@@ -57,7 +69,7 @@ export default function RootLayout({
 
 
 
-      <body data-theme="light">
+      <body data-theme="dark">
 
 <MediaProvider>
         {children}

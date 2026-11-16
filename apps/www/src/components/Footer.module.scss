@@ -1,18 +1,162 @@
 @use "@/styles/tools/breakpoint" as *;
+@use "@/styles/tools/typography" as *;
+
+
+
 
 .footer {
-  min-height: min(80svh, 80vw) !important;
+  margin-top: var(--space-stack-md);
+
+  // min-height: min(60svh, 60vw) !important;
+  // padding-top: var(--space-padding-lg);
+  padding: var(--space-padding-footer) 0;
+  // padding-top: var(--space-padding-footer);
+  // padding-bottom: var(--space-padding-footer);
+
+  color: var(--color-on-background-variant);
+  // background-color: var(--color-background);
+
+  display: flex;
+  flex-direction: column;
+
+.container {
+  position: relative;
+  flex: 1;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+.symbol {
+  --color-on-background: var(--color-on-background-variant);
+  width: 25%;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+.topBottomSplit {
+  // background-color: red;
+  //   z-index: 9999;
+  // position: absolute;
+  // inset: 0;
+
+  grid-column: 1 / 13;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+}
+
+
+// Rules below are top level (not nested in .topBottomSplit) so pieces like
+// <FooterBottom /> keep their styles wherever they render.
+
+.top, .bottom {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--layout-gutter);
+  row-gap: 0;
+
+  @include respond(below_sm) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-stack-md);
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.rowColumnStory {
+  @include respond(below_sm) {
+    margin-top: var(--space-stack-md);
+  }
+}
+
+// Always wanted to see an example of align-items and align-self.
+.bottom {
+  grid-column: 1 / 13; // full width when placed directly in a ucontainer grid
+  align-items: start;
+
+  // own color (not inherited from .footer) so it matches inside the header menu
+  // too; copyright and list titles use this, .list overrides to on-background
+  color: var(--color-on-background-variant);
   margin-top: var(--space-stack-lg);
-  padding: var(--space-padding-md) 0;
+
+  flex-direction: column;
+  @include respond(below_sm) {
+    margin-top: var(--space-stack-md);
+
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.copyright {
+  grid-column: 1 / 7;
+  grid-row: 1;
+
+  max-width: 280px;
+  align-self: end;
+
+  @include respond(below_sm) {
+    align-self: center;
+  }
+}
+
+.rowColumn {
+  @include title3;
+  grid-column: span 6;
+
+  @include respond(below_sm) {
+    grid-column: span 12;
+  }
+}
+
+.rowColumnB {
+  @include title3;
+  grid-column: span 3;
+
+  @include respond(below_sm) {
+    grid-column: span 12;
+  }
+}
+
+.title {
+  color: var(--color-on-background-variant);
+}
+
+.story {
+  margin-top: var(--space-inline-sm);
+  color: var(--color-on-background);
+
+  max-width: 480px;
+}
+
+.list {
+  margin-top: var(--space-inline-sm);
 
   color: var(--color-on-background);
-  background-color: var(--color-background);
 
-  .rowAColumn {
-    grid-column: span 6;
-
-    @include respond(below_sm) {
-      grid-column: span 12;
-    }
+  // every li except the first
+  li:not(:first-child) {
+    margin-top: var(--space-inline-xxs);
   }
 }

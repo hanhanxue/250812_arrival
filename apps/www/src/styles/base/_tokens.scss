@@ -31,19 +31,34 @@
 @use "@/styles/tools/functions" as *;
 
 
+
+// Layout — the page frame
+:root {
+  --layout-margin: 16px;
+  --layout-padding: 16px;
+  --layout-gutter: 16px;
+
+  --layout-max-width: 1200px;
+}
+
+
 // Space — distance between and inside things
 //   padding: inside a container · inline: gap between siblings (any axis)
 //   stack: vertical rhythm between sections and blocks
 :root {
+
   --space-padding-sm: 8px;
-  --space-padding-md: 24px;
+  --space-padding-md: 16px; // MID
+  --space-padding-lg: 32px;
 
-  --space-inline-xxs: 8px;
-  --space-inline-sm: 16px;
-  --space-inline-md: 32px;
 
-  --space-stack-xs: 32px;
-  --space-stack-lg: 120px;
+
+  --space-inline-sm: 12px;
+  --space-inline-md: 24px; // MID
+
+  --space-stack-sm: 24px;
+  --space-stack-md: 48px;  // MID
+  --space-stack-lg: 96px;
 }
 
 
@@ -51,9 +66,14 @@
 :root {
     --space-padding-subscribe: 360px;
   // grows on mobile, unlike the ladder above
-  --space-padding-footer: 12px;
+  --space-padding-footer: 24px;
   @include respond(below_md) {
-    --space-padding-footer: 16px;
+    // --space-padding-footer: 16px;
+    // --space-padding-subscribe: 80px;
+  }
+
+  @include respond(below_sm) {
+    --space-padding-subscribe: 120px;
   }
 
 
@@ -74,17 +94,10 @@
 
 // Radius — corner shape, by role
 :root {
-  --radius-media: 12px;    // images, video
-  --radius-media-sm: 8px;  // smaller media frames
+  --radius-media: 16px;    // images, video
+  --radius-media-sm: 16px;  // smaller media frames
 }
 
-
-// Layout — the page frame
-:root {
-  --layout-margin: 16px;
-  --layout-gutter: 16px;
-  --layout-max-width: 1200px;
-}
 
 
 // Z — stacking order:  z-index: var(--z-…)
@@ -114,30 +127,33 @@
 :root {
   // --font-monument is defined by next/font/local in app/layout.tsx
   --font-family-primary: var(--font-monument), sans-serif;
+  // --font-family-primary: var(--font-neue-montreal), sans-serif;
+  // --font-neue-montreal is defined by next/font/local in app/layout.tsx (Book 400, Medium 500)
+  --font-family-secondary: var(--font-neue-montreal), sans-serif;
 
   // Monument Grotesk is a variable font: weights sit between Regular and Medium
   --font-title1-size: #{rem(48)};
   --font-title1-line-height: #{rem(50)};
-  --font-title1-letter-spacing: -0.01em;
-  --font-title1-weight: 450;
+  --font-title1-letter-spacing: 0em;
+  --font-title1-weight: 400;
 
   --font-title2-size: #{rem(28)};
   --font-title2-line-height: #{rem(36)};
-  --font-title2-letter-spacing: -0.01em;
-  --font-title2-weight: 450;
+  --font-title2-letter-spacing: 0em;
+  --font-title2-weight: 400;
 
   --font-title3-size: #{rem(21)};
   --font-title3-line-height: #{rem(28)};
   --font-title3-letter-spacing: 0em;
-  --font-title3-weight: 420;
+  --font-title3-weight: 400;
 
   --font-body1-size: #{rem(14)};
   --font-body1-line-height: #{rem(20)};
-  --font-body1-letter-spacing: -0.01em;
-  --font-body1-weight: 420;
+  --font-body1-letter-spacing: 0em;
+  --font-body1-weight: 400;
 
   --font-caption1-size: #{rem(12)};
   --font-caption1-line-height: #{rem(16)};
-  --font-caption1-letter-spacing: 0.01em;
-  --font-caption1-weight: 420;
+  --font-caption1-letter-spacing: 0em;
+  --font-caption1-weight: 400;
 }

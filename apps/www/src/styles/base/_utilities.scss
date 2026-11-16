@@ -2,6 +2,13 @@
 // Emits CSS; loaded once via main.scss — components never @use this file.
 // Type is applied through the mixins in tools/_typography, not classes.
 
+// On <body> while the mobile menu is open (Header.tsx): no page scroll behind it.
+.has-menu-open {
+  overflow-y: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 .usection {
   color: var(--color-on-background);
   background-color: var(--color-background);

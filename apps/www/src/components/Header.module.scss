@@ -2,11 +2,20 @@
 @use "@/styles/tools/typography" as *;
 
 .section {
-  position: fixed;
-  top: 0;
+  // position: fixed;
+  // top: 0;
+  // width: 100%;
+
+  position: absolute;
   width: 100%;
+  // top: 0;
+
+  // position: sticky;
+  // top: 0; 
 
   z-index: var(--z-header);
+
+  background-color: transparent;
 
   //   background-color: color-mix(in srgb, var(--color-background) 70%, transparent);
   // -webkit-backdrop-filter: blur(16px); // Safari
@@ -17,6 +26,12 @@
 }
 
 .container {
+  // mobile: stack groupA (logo + button) above groupB (menu links)
+  @include respond(below_md) {
+    display: flex;
+    flex-direction: column;
+  }
+
   .gridItem {
     @include title3;
     padding: var(--space-padding-sm) 0;
@@ -47,17 +62,58 @@
     gap: var(--space-inline-md);
     justify-content: right;
 
+    // mobile menu: hidden until .isMenuOpen, then a full-height column
     @include respond(below_md) {
       display: none;
+
+      @include title1;
+      flex: 1 0 auto;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      gap: var(--space-inline-md);
     }
+  }
+
+  // footer content (FooterBottom): hidden until the mobile menu opens
+  .groupC {
+    display: none;
+
+
   }
 }
 
-// While a ThemeAtTop wrapper reports the page is at the top.
-:global([data-at-top]) .section {
-  background-color: transparent;
+// While an AtTop wrapper reports the page is at the top (desktop only, matching
+// the dark theme override in base/_color.scss).
+@include respond-not(below_sm) {
+  :global([data-at-top]) .section {
+    // background-color: transparent;
+  }
 }
 
+
+// Open mobile menu. Comes after the AtTop rule so its opaque background wins
+// over the transparent one (same specificity, later rule wins).
+.section.isMenuOpen {
+  @include respond(below_md) {
+    background-color: var(--color-background);
+
+    .container {
+      height: 100dvh; // dvh so it all fits while the mobile address bar shows
+    }
+
+    .groupB {
+      display: flex;
+    }
+
+    // groupB grows (flex: 1 0 auto), pushing this to the bottom of the menu
+    .groupC {
+      display: block;
+      padding-bottom: var(--space-padding-sm);
+          padding-bottom: var(--space-padding-footer);
+    }
+  }
+}
 
 .invert {
   // data-theme: dark;

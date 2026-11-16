@@ -26,3 +26,17 @@ $breakpoints: () !default;
       @error "No match found for breakpoint: #{$breakpoint}.";
     }
   }
+
+// Exact complement of respond(): everything wider than $breakpoint. Uses
+// `not all and (max-width)` rather than a min-width, so there is no gap or
+// overlap at the boundary pixel.
+//   .card { @include respond-not(below_sm) { … } }   // > 768px
+@mixin respond-not($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media not all and (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @error "No match found for breakpoint: #{$breakpoint}.";
+  }
+}

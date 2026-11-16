@@ -4,8 +4,33 @@
 
 
 .section {
-    background-color: #ff3300;
+    // margin-top: var(--layout-margin);
+    // background-color: #ff3300;
+    // background-color: var(--color-surface-container-low);
+        @include respond(below_sm) {
+margin: 0 var(--layout-margin);
+margin-top: var(--space-stack-lg);
+  }
+  
+position: relative;
+        @include respond(below_sm) {
+// margin: 0 var(--layout-margin);
+margin-top: var(--layout-margin);
 
+border-radius: var(--radius-media-sm);
+    overflow: hidden;
+
+          &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;  // follow the frame's corners
+      box-shadow: inset 0 0 1.5px 5px rgba(0, 255, 0, 1.0);
+      box-shadow: inset 0 0 1.5px 0px rgba(255, 255, 255, .32);
+      pointer-events: none;    // clicks still reach the video
+      z-index: 1;              // above the image
+    }
+  }
 
     .container {
 
@@ -19,10 +44,11 @@
 
 
         grid-column: 1 / 13;
-    margin: var(--space-padding-subscribe) 0;
+    padding: var(--space-padding-subscribe) 0;
 
     display: flex;
 justify-content: space-between;
+gap: var(--space-inline-md);
 
 
 @include title1;
@@ -30,16 +56,26 @@ justify-content: space-between;
 // max-width: var(--layout-max-width);
 
 
-border-bottom: 1px solid var(--color-outline-variant);
-padding: var(--space-padding-sm) 0;
+// border-bottom: 1px solid var(--color-outline-variant);
+// &:focus-within { border-bottom-color: var(--color-outline); }
+// // padding: var(--space-padding-sm) 0;
+// // &:focus-visible { border-bottom: 1px solid var(--color-outline); }
 
-// &:focus-visible { border-bottom: 1px solid var(--color-outline); }
-&:focus-within { border-bottom-color: var(--color-outline); }
+
+@include respond(below_md) {
+        flex-direction: column;
+        // text-align: center; // centers the button's text
+        gap: var(--space-inline-xs);
+        border: none;
+    }
 
 }
 
 
 .emailInput {
+
+
+    // line-height: normal;
     // strip all native input styling
     appearance: none;
     -webkit-appearance: none;
@@ -55,10 +91,20 @@ padding: var(--space-padding-sm) 0;
     font: inherit;
     color: inherit;
     letter-spacing: inherit;
+    // inputs clip their text; title1's tight line-height cut off descenders (g, y)
+    line-height: normal;
 
     // let it flex instead of the default ~20ch intrinsic width
     min-width: 0;
     flex: 1;
+
+//             border-bottom: 1px solid var(--color-outline-variant);
+// &:focus-within { border-bottom-color: var(--color-outline); }
+
+    // inputs don't inherit text-align; centers the value and placeholder
+    @include respond(below_md) {
+        // text-align: center;
+    }
 
     &::placeholder {
         color: inherit;
@@ -75,4 +121,12 @@ padding: var(--space-padding-sm) 0;
         -webkit-text-fill-color: currentColor;
         transition: background-color 9999s ease-out 0s;
     }
+}
+
+
+.subscribeButton {
+    // same line box as .emailInput, so both are the same height
+    line-height: normal;
+    // text-align: left;   // override the button's built-in centering
+    align-self: start;
 }

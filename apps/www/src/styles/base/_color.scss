@@ -1,3 +1,5 @@
+@use "@/styles/tools/breakpoint" as *;
+
 // Color tokens. Emits CSS; loaded once via main.scss.
 //
 // Naming: Material-style pairs. A fill token names a surface; its `on-` token
@@ -6,6 +8,7 @@
 //   --color-background            page background
 //   --color-on-background         primary text and icons on it
 //   --color-on-background-variant secondary text (inactive links)
+//   --color-surface-container-low one step above the background, e.g. panels
 //   --color-surface-container     neutral fills, e.g. placeholders behind media
 //   --color-outline               emphasized borders (focused inputs)
 //   --color-outline-variant       subtle borders and dividers
@@ -16,10 +19,11 @@
 // app/layout.tsx pins data-theme="light" on <body>; a subtree can switch theme
 // by setting its own data-theme (the Footer uses "dark").
 
-[data-theme="light"] {
+@mixin theme-light {
   --color-background: #ffffff;
   --color-on-background: #14120b;
   --color-on-background-variant: #8f8f8f;
+  --color-surface-container-low: #fafafa;
   --color-surface-container: #f6f6f6;
 
 
@@ -27,11 +31,52 @@
   --color-outline-variant: rgba(40, 40, 40, .16);
 }
 
-[data-theme="dark"] {
+[data-theme="light"] {
+  @include theme-light;
+}
+
+@mixin theme-dark {
   --color-background: #000;
   --color-on-background: #edecec;
   --color-on-background-variant: #8f8f8f;
+  --color-surface-container-low: #1a1915;
   --color-surface-container: #2b2923;
   --color-outline: #8f8f8f;
   --color-outline-variant: #3a3833;
+}
+
+
+[data-theme="dark"] {
+  @include theme-dark;
+}
+
+
+
+@mixin theme-primary {
+  --color-background: #ff3300;
+  --color-on-background: #14120b;
+  --color-on-background-variant: rgba(20, 18, 11, .6);
+  --color-surface-container-low: …;
+  --color-surface-container: …;
+  --color-outline: #14120b;
+  --color-outline-variant: rgba(20, 18, 11, .16);
+}
+
+[data-theme="primary"] {
+  @include theme-primary;
+}
+
+
+
+
+
+// Theme override: a subtree wrapped in <AtTop> (components/AtTop.tsx) goes dark
+// while the page is scrolled to the top, on screens above below_sm. Done in CSS
+// (not JS) so first paint is right at any width. Skipped while it contains an
+// open menu (Header sets data-menu-open), so the menu keeps the surrounding
+// theme instead of flipping as the window is resized across below_sm.
+@include respond-not(below_sm) {
+  [data-at-top]:not(:has([data-menu-open])) {
+    @include theme-dark;
+  }
 }
