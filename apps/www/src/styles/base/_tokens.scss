@@ -1,12 +1,13 @@
 // Tokens — every category except color (base/_color) and breakpoint
-// (tools/breakpoints.ts): space · size · radius · layout · z · motion · font.
+// (tools/breakpoints.ts): layout · space · size · radius · z · motion · font.
 // Emits CSS (:root custom properties); loaded once via main.scss.
 //
 // Naming: --{category}-{role}-{step}
-//   category  space · size · radius · layout · z · motion · font
+//   category  layout · space · size · radius · z · motion · font
 //   role      what it's for: padding, inline, stack, gutter, media, header…
-//   step      xxs · xs · sm · md · lg · xl · xxl — same ladder in every category,
-//             omitted when a role has a single value (--layout-gutter)
+//   step      xs · sm · md · lg · xl — omitted when a role has a single
+//             value (--layout-gutter). Motion durations use fast · slow
+//             instead of the size ladder.
 // Type roles use the CSS property as the last segment instead of a step:
 //   --font-{role}-{property}   e.g. --font-title2-line-height
 // Component-specific exceptions add the component after the role:
@@ -23,9 +24,15 @@
 //   with px values — rem(44) → 2.75rem. Letter spacing is in em.
 // - Responsive tokens change value inside respond(below_*) here, so components
 //   just use var(--…) and never add their own breakpoint for that value.
+//   Exception: a component may switch to a different token at a breakpoint
+//   only when its layout direction changes too (row → column), e.g. the
+//   header nav becoming a stacked mobile menu.
 //
 // Rule of thumb: if changing a value globally should change an element, use a
-// token; one-off component geometry belongs in component-scoped vars instead.
+// token. Spacing (padding, gap, margin) is always a token: a one-off spacing
+// value that doesn't fit the scale goes in Exceptions, not inline in the
+// component. Other one-off component geometry (sizes, offsets, percentages)
+// stays in the component.
 
 @use "@/styles/tools/breakpoint" as *;
 @use "@/styles/tools/functions" as *;
@@ -35,10 +42,12 @@
 // Layout — the page frame
 :root {
   --layout-margin: 16px;
-  --layout-padding: 16px;
   --layout-gutter: 16px;
 
-  --layout-max-width: 1200px;
+    @include respond(below_sm) {
+  --layout-margin: 8px;
+  --layout-gutter: 8px;
+  }
 }
 
 
@@ -49,14 +58,12 @@
 
   --space-padding-sm: 8px;
   --space-padding-md: 16px; // MID
-  --space-padding-lg: 32px;
 
 
-
+--space-inline-xs: 6px;
   --space-inline-sm: 12px;
   --space-inline-md: 24px; // MID
 
-  --space-stack-sm: 24px;
   --space-stack-md: 48px;  // MID
   --space-stack-lg: 96px;
 }
@@ -65,7 +72,7 @@
 // Exceptions — --{category}-{role}-{component}
 :root {
     --space-padding-subscribe: 360px;
-  // grows on mobile, unlike the ladder above
+  // footer's vertical padding; also used by the footer inside the mobile menu
   --space-padding-footer: 24px;
   @include respond(below_md) {
     // --space-padding-footer: 16px;
@@ -81,13 +88,9 @@
 
 
 // Size — dimensions of things
+// Nothing uses a size token yet; hairline is kept as the section's reference.
 :root {
   --size-stroke-hairline: 1px;
-  // room to leave for the fixed header: sticky offsets, anchor scroll targets
-  --size-offset-header: 80px;
-  @include respond(below_md) {
-    --size-offset-header: 42px;
-  }
 }
 
 
@@ -95,7 +98,6 @@
 // Radius — corner shape, by role
 :root {
   --radius-media: 16px;    // images, video
-  --radius-media-sm: 16px;  // smaller media frames
 }
 
 
@@ -121,39 +123,73 @@
 }
 
 
-// Font — family, and one set of tokens per type role.
+// Font — family, weight, and one set of tokens per type role.
 // Bundled into mixins by tools/_typography (title1…caption1); components use
 // the mixins, not these tokens directly.
 :root {
   // --font-monument is defined by next/font/local in app/layout.tsx
   --font-family-primary: var(--font-monument), sans-serif;
   // --font-family-primary: var(--font-neue-montreal), sans-serif;
-  // --font-neue-montreal is defined by next/font/local in app/layout.tsx (Book 400, Medium 500)
-  --font-family-secondary: var(--font-neue-montreal), sans-serif;
+  --font-weight-primary: 400;
 
-  // Monument Grotesk is a variable font: weights sit between Regular and Medium
+  //Headings
+  --font-title1-size: #{rem(60)};
+  --font-title1-line-height: #{rem(68)};
+  --font-title1-letter-spacing: -.02em;
+
+  --font-title2-size: #{rem(32)};
+  --font-title2-line-height: #{rem(40)};
+  --font-title2-letter-spacing: -.01em;
+
+  --font-title3-size: #{rem(24)};
+  --font-title3-line-height: #{rem(32)};
+  --font-title3-letter-spacing: -.01em;
+
+
+
+  //Paragraphs
+  --font-body1-size: #{rem(18)};
+  --font-body1-line-height: #{rem(22)};
+  --font-body1-letter-spacing: 0em;
+
+  --font-body2-size: #{rem(14)};
+  --font-body2-line-height: #{rem(18)};
+  --font-body2-letter-spacing: .01em;
+
+    --font-caption1-size: #{rem(12)};
+  --font-caption1-line-height: #{rem(16)};
+  --font-caption1-letter-spacing: .01em;
+
+
+  @include respond(below_lg) {
+      //Headings
   --font-title1-size: #{rem(48)};
-  --font-title1-line-height: #{rem(50)};
-  --font-title1-letter-spacing: 0em;
-  --font-title1-weight: 400;
+  --font-title1-line-height: #{rem(56)};
+  --font-title1-letter-spacing: -.02em;
 
   --font-title2-size: #{rem(28)};
   --font-title2-line-height: #{rem(36)};
-  --font-title2-letter-spacing: 0em;
-  --font-title2-weight: 400;
+  --font-title2-letter-spacing: -.01em;
+
+  --font-title3-size: #{rem(22)};
+  --font-title3-line-height: #{rem(30)};
+  --font-title3-letter-spacing: 0em;
+
+  }
+
+    @include respond(below_sm) {
+      //Headings
+  --font-title1-size: #{rem(32)};
+  --font-title1-line-height: #{rem(40)};
+  --font-title1-letter-spacing: -.01em;
+
+  --font-title2-size: #{rem(24)};
+  --font-title2-line-height: #{rem(32)};
+  --font-title2-letter-spacing: -.01em;
 
   --font-title3-size: #{rem(21)};
   --font-title3-line-height: #{rem(28)};
   --font-title3-letter-spacing: 0em;
-  --font-title3-weight: 400;
 
-  --font-body1-size: #{rem(14)};
-  --font-body1-line-height: #{rem(20)};
-  --font-body1-letter-spacing: 0em;
-  --font-body1-weight: 400;
-
-  --font-caption1-size: #{rem(12)};
-  --font-caption1-line-height: #{rem(16)};
-  --font-caption1-letter-spacing: 0em;
-  --font-caption1-weight: 400;
+  }
 }

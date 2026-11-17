@@ -7,18 +7,12 @@
     // margin-top: var(--layout-margin);
     // background-color: #ff3300;
     // background-color: var(--color-surface-container-low);
-        @include respond(below_sm) {
-margin: 0 var(--layout-margin);
-margin-top: var(--space-stack-lg);
-  }
+
   
 position: relative;
         @include respond(below_sm) {
-// margin: 0 var(--layout-margin);
 margin-top: var(--layout-margin);
-
-border-radius: var(--radius-media-sm);
-    overflow: hidden;
+// card shape (margin, radius, overflow) comes from .umobile-card in JSX
 
           &::after {
       content: "";
@@ -65,15 +59,24 @@ gap: var(--space-inline-md);
 @include respond(below_md) {
         flex-direction: column;
         // text-align: center; // centers the button's text
-        gap: var(--space-inline-xs);
+        // gap: var(--space-inline-sm);
+        gap: 0;
         border: none;
     }
 
 }
+.subscribeButton {
+    // line-height: normal;
+
+
+    // same line box as .emailInput, so both are the same height
+    // text-align: left;   // override the button's built-in centering
+    align-self: start;
+}
 
 
 .emailInput {
-
+    // line-height: normal;
 
     // line-height: normal;
     // strip all native input styling
@@ -92,7 +95,7 @@ gap: var(--space-inline-md);
     color: inherit;
     letter-spacing: inherit;
     // inputs clip their text; title1's tight line-height cut off descenders (g, y)
-    line-height: normal;
+
 
     // let it flex instead of the default ~20ch intrinsic width
     min-width: 0;
@@ -124,9 +127,3 @@ gap: var(--space-inline-md);
 }
 
 
-.subscribeButton {
-    // same line box as .emailInput, so both are the same height
-    line-height: normal;
-    // text-align: left;   // override the button's built-in centering
-    align-self: start;
-}

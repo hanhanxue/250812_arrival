@@ -4,7 +4,6 @@
 
 .section {
     @include respond(below_sm) {
-margin: 0 var(--layout-margin);
 margin-top: var(--space-stack-lg);
   }
 
@@ -13,10 +12,8 @@ margin-top: var(--space-stack-lg);
 
   .assetFrame {
     position: relative;
+    // card shape (margin, radius, overflow) comes from .umobile-card in JSX
     @include respond(below_sm) {
-border-radius: var(--radius-media-sm);
-    overflow: hidden;
-
 
     // border: 1.5px solid var(--color-outline-variant);
   // box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 1.0),  // thin inner outline
@@ -36,7 +33,7 @@ border-radius: var(--radius-media-sm);
 
 
   .assetCaptionFrame {
-    @include body1;
+    @include body2;
     position: absolute;
     inset: 0;
     z-index: 2; // above the image
@@ -56,7 +53,7 @@ display: flex;
 
   .assetCaptionTitle {
     display: flex;
-    gap: var(--space-inline-sm);
+    gap: var(--space-inline-md);
 
     @include respond(below_sm) {
       flex-direction: column;
@@ -103,7 +100,7 @@ display: none;
   .imageContainer {
     position: relative;
 
-    border-radius: var(--radius-media-sm);
+    border-radius: var(--radius-media);
     overflow: hidden;
   }
 

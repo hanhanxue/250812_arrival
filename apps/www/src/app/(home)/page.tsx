@@ -11,7 +11,7 @@ export default function Home() {
       <section className={`${styles.section} usection`}>
         <div className={`${styles.fullContainer}`}>
 
-          <div className={`${styles.assetFrame}`}>
+          <div className={`${styles.assetFrame} umobile-card`}>
                         <div className={`${styles.assetCaptionFrame}`}>
                           <div className={`${styles.assetCaption}`}>
                             <div className={`${styles.assetCaptionTitle}`}><p>Meadowlark</p>
@@ -51,7 +51,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={`${styles.assetFrame}`} >
+          <div className={`${styles.assetFrame} umobile-card`}>
             <div style={{ position: "relative", aspectRatio: 2 }}>
             <MuxVideo playbackId="016dHL9Rg007eilEYWL0027bPwhPlXXKk01880200014Uk56dU" />
             </div>

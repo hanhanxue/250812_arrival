@@ -12,7 +12,7 @@ import { useState } from "react"
 export default function Subscribe() {
   return (
     <section
-      className={`${styles.section} usection`}
+      className={`${styles.section} usection umobile-card`}
       data-theme="primary"
     >
       <div className={`${styles.container} ucontainer umx`}>

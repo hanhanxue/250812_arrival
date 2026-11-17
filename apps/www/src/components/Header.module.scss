@@ -33,7 +33,7 @@
   }
 
   .gridItem {
-    @include title3;
+    @include body1;
     padding: var(--space-padding-sm) 0;
 
     grid-row: 1;
@@ -45,6 +45,8 @@
 
     align-items: center;
     justify-content: space-between;
+
+    height: 44px; // Future Refactor, how do deal with this value
 
     .menuButtonWrapper {
       display: none;
@@ -71,7 +73,6 @@
       flex-direction: column;
       align-items: start;
       justify-content: start;
-      gap: var(--space-inline-md);
     }
   }
 
@@ -109,8 +110,7 @@
     // groupB grows (flex: 1 0 auto), pushing this to the bottom of the menu
     .groupC {
       display: block;
-      padding-bottom: var(--space-padding-sm);
-          padding-bottom: var(--space-padding-footer);
+      padding-bottom: var(--space-padding-footer);
     }
   }
 }

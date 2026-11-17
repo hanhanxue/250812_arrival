@@ -6,7 +6,7 @@
   margin-top: var(--space-stack-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-stack-xs);
+  gap: var(--space-inline-sm);
 }
 
 .title1 { @include title1; }

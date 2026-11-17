@@ -93,7 +93,7 @@ export const FooterBottom = () => {
             </div>
 
                             <div className={`${styles.rowColumn} ${styles.copyright}  `}>
-                ©2026 Arrival Computer Inc. All rights reserved.
+                ©2026 Arrival Computer Inc.<br />All rights reserved.
             </div>
 </div>
   )

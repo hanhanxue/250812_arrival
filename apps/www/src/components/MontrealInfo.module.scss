@@ -8,11 +8,11 @@
   grid-template-columns: repeat(12, 1fr);
   gap: var(--layout-gutter);
 
-  margin: var(--space-inline-xxs) 0;
+  margin: var(--space-inline-sm) 0;
 
   span:nth-child(1) {
     grid-column: 1 / 4;
-    margin: 0 var(--space-inline-xxs);
+    margin: 0 var(--space-inline-sm);
   }
 
   span:nth-child(2) {
@@ -26,6 +26,6 @@
   span:nth-child(4) {
     grid-column: 10 / 13;
     justify-self: right;
-    margin: 0 var(--space-inline-xxs);
+    margin: 0 var(--space-inline-sm);
   }
 }

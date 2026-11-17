@@ -22,8 +22,8 @@ const monument = localFont({
   adjustFontFallback: "Arial",
 })
 
-// Exposed as --font-neue-montreal; styles use --font-family-secondary
-// (base/_tokens.scss). Static cuts: Book (400) and Medium (500).
+// Exposed as --font-neue-montreal; not used by any style yet (see the
+// commented-out --font-family-primary in base/_tokens.scss). Static cuts: Book (400) and Medium (500).
 const neueMontreal = localFont({
   src: [
     { path: "../../public/fonts/PPNeueMontreal-Book.woff2", weight: "400", style: "normal" },

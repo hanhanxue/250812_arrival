@@ -2,11 +2,23 @@
 // Emits CSS; loaded once via main.scss — components never @use this file.
 // Type is applied through the mixins in tools/_typography, not classes.
 
+@use "@/styles/tools/breakpoint" as *;
+
 // On <body> while the mobile menu is open (Header.tsx): no page scroll behind it.
 .has-menu-open {
   overflow-y: hidden;
   overscroll-behavior: none;
   touch-action: none;
+}
+
+// Below below_sm, an edge-to-edge block becomes an inset card with rounded
+// corners. Spacing above/below stays in the component (it's placement, not card).
+.umobile-card {
+  @include respond(below_sm) {
+    margin-inline: var(--layout-margin);
+    border-radius: var(--radius-media);
+    overflow: hidden;
+  }
 }
 
 .usection {

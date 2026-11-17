@@ -56,8 +56,9 @@
   --color-background: #ff3300;
   --color-on-background: #14120b;
   --color-on-background-variant: rgba(20, 18, 11, .6);
-  --color-surface-container-low: …;
-  --color-surface-container: …;
+  // placeholders: steps darker than the background, same hue
+  --color-surface-container-low: #f02f00;
+  --color-surface-container: #e02c00;
   --color-outline: #14120b;
   --color-outline-variant: rgba(20, 18, 11, .16);
 }
