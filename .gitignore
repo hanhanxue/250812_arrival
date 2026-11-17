@@ -42,3 +42,9 @@ next-env.d.ts
 
 # ignore folders with underscore
 _*/
+
+# generated build cache
+.turbo/
+
+# Windows download metadata
+*:Zone.Identifier
