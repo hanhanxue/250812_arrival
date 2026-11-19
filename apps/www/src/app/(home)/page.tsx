@@ -29,7 +29,7 @@ export default function Home() {
             <div style={{ position: "relative", aspectRatio: 1.0 }}>
               <Image
 
-                src="/261113_d5.jpg"  
+                src="/261118_d5.jpg"  
                 alt="Arrival Computer - d5"
 
                 priority
