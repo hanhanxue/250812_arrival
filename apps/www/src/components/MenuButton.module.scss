@@ -1,6 +1,6 @@
 .menuButton {
-  width: 28px;
-  height: 28px;
+  width: var(--size-button-menu);
+  height: var(--size-button-menu);
 
   cursor: pointer;
   user-select: none;

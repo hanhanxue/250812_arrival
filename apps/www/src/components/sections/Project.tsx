@@ -5,6 +5,7 @@ import Image from "next/image"
 const Project = () => {
   return (
     <section className={`${styles.section} usection `}>
+      <div className={`${styles.surface} usurface`}>
       <div className={`${styles.container} ucontainer umx `}>
 
 
@@ -69,6 +70,7 @@ const Project = () => {
 
 
 
+      </div>
       </div>
     </section>
   )

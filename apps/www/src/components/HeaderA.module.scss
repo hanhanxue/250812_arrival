@@ -1,0 +1,195 @@
+@use "@/styles/tools/breakpoint" as *;
+@use "@/styles/tools/typography" as *;
+
+.section {
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  // background-color: var(--color-background);
+
+  // position: absolute;
+  // width: 100%;
+  // top: 0;
+
+  // position: sticky;
+  // top: 0; 
+
+  z-index: var(--z-header);
+
+  //   background-color: color-mix(in srgb, var(--color-background) 70%, transparent);
+  // -webkit-backdrop-filter: blur(16px); // Safari
+  // backdrop-filter: blur(16px);
+
+  // transition-property: background-color, color;
+  // transition-duration: var(--motion-duration-slow);
+}
+
+.surface {
+  position: relative; // anchor for .blur
+}
+
+// Progressive blur: strongest at the top, gone at the bottom edge.
+// One backdrop-filter can't change its radius across an element, so five
+// layers with roughly doubling blur each show only through a horizontal band
+// (mask). The bands are 20% tall and cross-fade into their neighbours, so the
+// steps aren't visible. Before a gradient's first stop it holds that colour,
+// so "#000 20%" means solid from the top down to 20%.
+.blur {
+  position: absolute;
+  inset: 0 0 -24px;
+  z-index: -1; // behind the header content, and under the open menu's background
+  pointer-events: none;
+
+  span {
+    position: absolute;
+    inset: 0;
+    -webkit-backdrop-filter: blur(var(--blur)); // Safari
+    backdrop-filter: blur(var(--blur));
+    mask-image: var(--mask);
+  }
+
+  // span:nth-child(1) { --blur: 34px; --mask: linear-gradient(#000 0%, transparent 20%); }
+  // span:nth-child(2) { --blur: 18px; --mask: linear-gradient(#000 20%, transparent 40%); }
+  // span:nth-child(3) { --blur: 10px; --mask: linear-gradient(transparent 0%,  #000 20%, #000 40%, transparent 60%); }
+  // span:nth-child(4) { --blur: 6px;  --mask: linear-gradient(transparent 20%, #000 40%, #000 60%, transparent 80%); }
+  // span:nth-child(5) { --blur: 4px;  --mask: linear-gradient(transparent 40%, #000 60%, #000 80%, transparent 100%); }
+
+  //   span:nth-child(1) { --blur: 32px; --mask: linear-gradient(#000 0%, transparent 20%); }
+  // span:nth-child(2) { --blur: 16px; --mask: linear-gradient(#000 20%, transparent 40%); }
+  // span:nth-child(3) { --blur: 8px; --mask: linear-gradient(transparent 0%,  #000 20%, #000 40%, transparent 60%); }
+  // span:nth-child(4) { --blur: 4px;  --mask: linear-gradient(transparent 20%, #000 40%, #000 60%, transparent 80%); }
+  // span:nth-child(5) { --blur: 2px;  --mask: linear-gradient(transparent 40%, #000 60%, #000 80%, transparent 100%); }
+
+      span:nth-child(1) { --blur: 16px; --mask: linear-gradient(#000 0%, transparent 20%); }
+  span:nth-child(2) { --blur: 8px; --mask: linear-gradient(#000 20%, transparent 40%); }
+  span:nth-child(3) { --blur: 4px; --mask: linear-gradient(transparent 0%,  #000 20%, #000 40%, transparent 60%); }
+  span:nth-child(4) { --blur: 2px;  --mask: linear-gradient(transparent 20%, #000 40%, #000 60%, transparent 80%); }
+  span:nth-child(5) { --blur: 1px;  --mask: linear-gradient(transparent 40%, #000 60%, #000 80%, transparent 100%); }
+
+  // Tint over the blur: the page colour, fading out fast at first then slowly
+  // (ease-out stops) so there's no visible bottom edge. Follows data-theme.
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   inset: 0;
+  //   background: linear-gradient(
+  //     color-mix(in srgb, var(--color-background) 50%, transparent) 0%,
+  //     color-mix(in srgb, var(--color-background) 40%, transparent) 20%,
+  //     color-mix(in srgb, var(--color-background) 25%, transparent) 45%,
+  //     color-mix(in srgb, var(--color-background) 15%, transparent) 70%,
+  //     transparent 100%
+  //   );
+  // }
+}
+
+.container {
+  // mobile: stack groupA (logo + button) above groupB (menu links)
+  @include respond(below_md) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gridItem {
+    @include body1;
+    
+    // padding: var(--space-padding-header) 0;
+    padding-block: var(--space-padding-header);
+
+    grid-row: 1;
+    display: flex;
+  }
+
+  .groupA {
+    grid-column: 1 / 13;
+
+    align-items: center;
+    justify-content: space-between;
+
+    // height: 64px; // Future Refactor, how do deal with this value
+
+
+    .menuButtonWrapper {
+      display: none;
+
+      @include respond(below_md) {
+        display: block;
+      }
+    }
+  }
+
+  .groupB {
+    grid-column: 9 / 13;
+
+    align-items: center;
+    gap: var(--space-inline-md);
+    justify-content: right;
+
+    // mobile menu: hidden until .isMenuOpen, then a full-height column
+    @include respond(below_md) {
+      display: none;
+
+      @include title1;
+      flex: 1 0 auto;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+    }
+  }
+
+  // footer content (FooterBottom): hidden until the mobile menu opens
+  .groupC {
+    display: none;
+
+
+  }
+}
+
+// While an AtTop wrapper reports the page is at the top (desktop only, matching
+// the dark theme override in base/_color.scss).
+@include respond-not(below_sm) {
+  :global([data-at-top]) .section {
+    // background-color: transparent;
+  }
+}
+
+
+// Open mobile menu. Comes after the AtTop rule so its opaque background wins
+// over the transparent one (same specificity, later rule wins).
+.section.isMenuOpen {
+  @include respond(below_md) {
+    .surface {
+      background-color: var(--color-background);
+    }
+
+    .container {
+      height: 100dvh; // dvh so it all fits while the mobile address bar shows
+    }
+
+    .groupB {
+      display: flex;
+    }
+
+    // groupB grows (flex: 1 0 auto), pushing this to the bottom of the menu
+    .groupC {
+      display: block;
+      padding-bottom: var(--space-padding-footer);
+    }
+  }
+}
+
+.invert {
+  // data-theme: dark;
+  // filter: invert(1);
+  // mix-blend-mode: difference;
+  // background-color: transparent !important;
+}
+
+.link {
+  color: var(--color-on-background-variant);
+  transition: color var(--motion-duration-slow);
+
+  &:hover {
+    color: var(--color-on-background);
+  }
+}

@@ -15,8 +15,6 @@
 
   z-index: var(--z-header);
 
-  background-color: transparent;
-
   //   background-color: color-mix(in srgb, var(--color-background) 70%, transparent);
   // -webkit-backdrop-filter: blur(16px); // Safari
   // backdrop-filter: blur(16px);
@@ -97,7 +95,9 @@
 // over the transparent one (same specificity, later rule wins).
 .section.isMenuOpen {
   @include respond(below_md) {
-    background-color: var(--color-background);
+    .surface {
+      background-color: var(--color-background);
+    }
 
     .container {
       height: 100dvh; // dvh so it all fits while the mobile address bar shows

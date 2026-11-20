@@ -3,32 +3,33 @@
 @use "@/styles/tools/typography" as *;
 
 
+// section (vertical spacing, theme) > surface (paint, mobile card) > container
 .section {
-    // margin-top: var(--layout-margin);
-    // background-color: #ff3300;
-    // background-color: var(--color-surface-container-low);
+  @include respond(below_sm) {
+    margin-top: var(--layout-margin);
+  }
+}
 
-  
-position: relative;
-        @include respond(below_sm) {
-margin-top: var(--layout-margin);
-// card shape (margin, radius, overflow) comes from .umobile-card in JSX
+.surface {
+  position: relative; // anchor for the hairline
 
-          &::after {
+  // card shape (inset, radius, overflow) comes from .umobile-card in JSX
+  @include respond(below_sm) {
+    // inner hairline along the card edge
+    &::after {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: inherit;  // follow the frame's corners
-      box-shadow: inset 0 0 1.5px 5px rgba(0, 255, 0, 1.0);
-      box-shadow: inset 0 0 1.5px 0px rgba(255, 255, 255, .32);
-      pointer-events: none;    // clicks still reach the video
-      z-index: 1;              // above the image
+      border-radius: inherit;  // follow the card's corners
+      box-shadow: inset 0 0 1.5px 0px rgba(255, 255, 255, .48);
+      pointer-events: none;    // clicks pass through
+      z-index: 1;              // above the content
     }
   }
+}
 
-    .container {
-
-    }
+.container {
+  padding-block: var(--space-padding-md); // inline inset comes from .umx
 }
 
 

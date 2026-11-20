@@ -11,26 +11,24 @@ import { useState } from "react"
 
 export default function Subscribe() {
   return (
-    <section
-      className={`${styles.section} usection umobile-card`}
-      data-theme="primary"
-    >
-      <div className={`${styles.container} ucontainer umx`}>
-        <form
-          className={`${styles.newsletterSignupForm}`}
-          action="/api/subscribe"
-          method="POST"
-        >
-          <input
-            type="email"
-            placeholder="Email"
-            className={`${styles.emailInput}`}
-            
-          />
-          <button type="submit" className={`${styles.subscribeButton}`}>
-            Subscribe
-          </button>
-        </form>
+    <section className={`${styles.section} usection`} data-theme="primary">
+      <div className={`${styles.surface} usurface umobile-card`}>
+        <div className={`${styles.container} ucontainer umx`}>
+          <form
+            className={`${styles.newsletterSignupForm}`}
+            action="/api/subscribe"
+            method="POST"
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              className={`${styles.emailInput}`}
+            />
+            <button type="submit" className={`${styles.subscribeButton}`}>
+              Subscribe
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   )

@@ -4,28 +4,25 @@
 
 
 
+// footer (vertical spacing, theme) > surface (paint, mobile card) > container
 .footer {
   margin-top: var(--space-stack-md);
-
-  // min-height: min(60svh, 60vw) !important;
-  // padding-top: var(--space-padding-lg);
-  padding: var(--space-padding-footer) 0;
-  // padding-top: var(--space-padding-footer);
-  // padding-bottom: var(--space-padding-footer);
-
   color: var(--color-on-background-variant);
-  // background-color: var(--color-background);
+}
+
+// not a card (same colour as the page); text lines up with the mobile cards via .umobile-card-align in JSX
+.surface {
+  // min-height: min(60svh, 60vw) !important;
+  // padding: var(--space-padding-footer) 0;
 
   display: flex;
   flex-direction: column;
 
-.container {
-  position: relative;
-  flex: 1;
-
-}
-
-
+  .container {
+    position: relative;
+    flex: 1;
+    padding-block: var(--space-padding-footer); // inline inset comes from .umx
+  }
 }
 
 
@@ -148,7 +145,7 @@
   margin-top: var(--space-inline-sm);
   color: var(--color-on-background);
 
-  max-width: 480px;
+  max-width: var(--layout-max-width-footer);
 }
 
 .list {

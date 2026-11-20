@@ -2,113 +2,103 @@
 @use "@/styles/tools/typography" as *;
 
 
+// section (vertical spacing) > surface (paint, mobile card) > content.
+// The image fills the surface edge to edge (.assetFrame), and the caption's
+// grid container is pinned over its bottom, lined up with the page columns.
 .section {
-    @include respond(below_sm) {
-margin-top: var(--space-stack-lg);
+  @include respond(below_sm) {
+    margin-top: var(--space-stack-lg);
   }
-
-  // position: relative;
 }
 
-  .assetFrame {
-    position: relative;
-    // card shape (margin, radius, overflow) comes from .umobile-card in JSX
-    @include respond(below_sm) {
+.surface {
+  position: relative; // anchor for the caption overlay and the hairline
 
-    // border: 1.5px solid var(--color-outline-variant);
-  // box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 1.0),  // thin inner outline
-  //             inset 0 1px 12px rgba(255, 255, 255, .06); // soft inner glow
-
-      &::after {
+  @include respond(below_sm) {
+    // inner hairline along the card edge (card shape comes from .umobile-card)
+    &::after {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: inherit;  // follow the frame's corners
-      box-shadow: inset 0 0 1.5px 0px rgba(255, 255, 255, .32);
-      pointer-events: none;    // clicks still reach the video
-      z-index: 1;              // above the image
+      border-radius: inherit;  // follow the card's corners
+      box-shadow: inset 0 0 1.5px 0px rgba(255, 255, 255, .48);
+      pointer-events: none;    // clicks pass through
+      z-index: 3;              // above the image and caption
     }
-    
   }
+}
 
+// Layer 1: the image, edge to edge. next/image `fill` covers this box.
+.assetFrame {
+  position: relative;
+  aspect-ratio: 1;
 
-  .assetCaptionFrame {
-    @include body2;
-    position: absolute;
-    inset: 0;
-    z-index: 2; // above the image
-    padding: var(--space-padding-md);
+  // border: 1.5px solid var(--color-outline-variant);
+  // box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 1.0),  // thin inner outline
+  //             inset 0 1px 12px rgba(255, 255, 255, .06); // soft inner glow
+}
 
-    display: flex;
-    align-items: flex-end;
+// Layer 2: the caption, pinned to the bottom, aligned to the page grid.
+// Out of flow: it overlays the image and doesn't add height to the surface.
+.container {
+  @include body2;
+  position: absolute; // later than the positioned assetFrame, so paints above it
+  inset-inline: 0;
+  bottom: 0;
+  padding-block: var(--space-padding-md); // inline inset comes from .umx
+}
 
-    .assetCaption {
-      flex-grow: 1;   // take up all the leftover space in the row
+.assetCaption {
+  grid-column: 1 / 13;
 
-display: flex;
-// width: 100%;
+  display: flex;
   justify-content: space-between;  // title on the left, buttons on the right
-
   align-items: flex-end;
+}
 
-  .assetCaptionTitle {
-    display: flex;
-    gap: var(--space-inline-md);
+.assetCaptionTitle {
+  display: flex;
+  gap: var(--space-inline-md);
 
-    @include respond(below_sm) {
-      flex-direction: column;
-      // gap: var(--space-stack-sm);
-      gap: 0;
-    }
+  @include respond(below_sm) {
+    flex-direction: column;
+    // gap: var(--space-stack-sm);
+    gap: 0;
   }
+}
 
-  .assetCaptionDescription {
-        @include respond(below_sm) {
-display: none;
-    }
+.assetCaptionDescription {
+  @include respond(below_sm) {
+    display: none;
   }
+}
 
 .buttons {
   display: flex;
   gap: var(--space-inline-sm);
-      @include respond(below_sm) {
-      flex-direction: column;
-      // gap: var(--space-stack-sm);
-      gap: 0;
-      align-items: flex-end;
-    }
-}
-    }
+
+  @include respond(below_sm) {
+    flex-direction: column;
+    // gap: var(--space-stack-sm);
+    gap: 0;
+    align-items: flex-end;
   }
-.container {
-  .fullContainer {
-    // grid-column: 1 / 13;
-
-    // display: flex;
-    // flex-direction: column;
-  }
-
-
-
 }
+
 
 .description {
   grid-column: 1 / 13;
   @include title1;
 }
 
-  .imageContainer {
-    position: relative;
+.imageContainer {
+  position: relative;
 
-    border-radius: var(--radius-media);
-    overflow: hidden;
-  }
+  border-radius: var(--radius-media);
+  overflow: hidden;
+}
 
 
-
-  
-  
-  }
 // .assetFrame {
 //   position: fixed;
 //   inset: 0;

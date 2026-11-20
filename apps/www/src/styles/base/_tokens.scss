@@ -71,15 +71,20 @@
 
 // Exceptions — --{category}-{role}-{component}
 :root {
+--space-padding-header: 20px;
+  --layout-padding-mobile-card: 16px;
+  --layout-max-width-footer: 640px; // footer story paragraphs
     --space-padding-subscribe: 360px;
   // footer's vertical padding; also used by the footer inside the mobile menu
-  --space-padding-footer: 24px;
+
+  --space-padding-footer: 16px;
   @include respond(below_md) {
-    // --space-padding-footer: 16px;
+
     // --space-padding-subscribe: 80px;
   }
 
   @include respond(below_sm) {
+        --space-padding-footer: 24px;
     --space-padding-subscribe: 120px;
   }
 
@@ -88,9 +93,11 @@
 
 
 // Size — dimensions of things
-// Nothing uses a size token yet; hairline is kept as the section's reference.
 :root {
   --size-stroke-hairline: 1px;
+
+  // Exceptions — --size-{role}-{component}
+  --size-button-menu: 24px; // menu button, square: width and height
 }
 
 

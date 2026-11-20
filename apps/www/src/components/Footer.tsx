@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <footer className={`${styles.footer} usection`}
     data-theme="dark">
+      <div className={`${styles.surface} usurface umobile-card-align`}>
 
-
-        <div className={`${styles.container} 
+        <div className={`${styles.container}
         ucontainer umx`}>
 
 
@@ -56,7 +56,7 @@ const Footer = () => {
 
 <FooterBottom />
         </div>
-
+      </div>
     </footer>
   )
 }

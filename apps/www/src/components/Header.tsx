@@ -44,6 +44,9 @@ export default function Header({ invert }: HeaderProps) {
       data-theme={invert ? "dark" : undefined}
       data-menu-open={isMenuOpen || undefined}
     >
+      {/* no .usurface: the header stays transparent until the menu opens.
+          umobile-card-align: text lines up with text inside the mobile cards */}
+      <div className={`${styles.surface} umobile-card-align`}>
       <div className={`${styles.container} ucontainer umx`}>
         <div className={`${styles.gridItem} ${styles.groupA}`}>
           <XLink
@@ -78,6 +81,7 @@ export default function Header({ invert }: HeaderProps) {
         <div className={`${styles.groupC}`}>
           <FooterBottom />
         </div>
+      </div>
       </div>
     </header>
   )
