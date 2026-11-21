@@ -1,4 +1,8 @@
 import styles from "./page.module.scss"
+import { PAGES } from "@/lib/constants"
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata(PAGES.imprint)
 
 const ROLES = ["title1", "title2", "title3", "body1", "caption1"] as const
 

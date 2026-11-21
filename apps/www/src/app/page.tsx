@@ -3,6 +3,10 @@ import styles from "./page.module.scss"
 import MontrealInfo from "@/components/MontrealInfo"
 import MuxVideo from "@/components/MuxVideo"
 import S_Subscribe from "@/components/S_Subscribe"
+import { PAGES } from "@/lib/constants"
+import { pageMetadata } from "@/lib/metadata"
+
+export const metadata = pageMetadata(PAGES.home)
 
 
 export default function Home() {

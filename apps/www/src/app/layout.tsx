@@ -1,14 +1,13 @@
-import type { Metadata } from "next"
-
 import localFont from "next/font/local"
 
 import "@/styles/main.scss"
-import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants"
+import { siteMetadata } from "@/lib/metadata"
 import Script from "next/script"
 import PlausibleProvider from "next-plausible"
 
 import Footer from "@/components/Footer"
 import MediaProvider from "@/providers/MediaProvider"
+import HeaderA from "@/components/HeaderA"
 
 // Self-hosted and preloaded by Next. Exposed as --font-monument; styles use
 // --font-family-primary (base/_tokens.scss), which points at it.
@@ -34,10 +33,8 @@ const neueMontreal = localFont({
   adjustFontFallback: "Arial",
 })
 
-export const metadata: Metadata = {
-  title: SITE_NAME,
-  description: SITE_DESCRIPTION,
-}
+// All metadata data lives in lib/constants.ts; lib/metadata.ts builds it.
+export const metadata = siteMetadata
 
 export default function RootLayout({
   children,
@@ -72,6 +69,7 @@ export default function RootLayout({
       <body data-theme="dark">
 
 <MediaProvider>
+  <HeaderA />
         {children}
       <Footer />
 </MediaProvider>

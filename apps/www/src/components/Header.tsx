@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { SITE_NAME, NAVIGATION } from "@/lib/constants"
+import { SITE_NAME, NAVIGATION, CONTACT_EMAIL } from "@/lib/constants"
 import styles from "./Header.module.scss"
 
 import ICO_Arrival from "./iconography/ICO_ArrivalComputer"
@@ -72,7 +72,7 @@ export default function Header({ invert }: HeaderProps) {
             Research<sup>↗</sup>
           </XLink>
 
-          <XLink href="mailto:mail@arrival.works" onClick={closeMenu}>
+          <XLink href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>
             Office
           </XLink>
         </div>
